@@ -14,8 +14,8 @@ import RxOptional
 import RxDataSources
 import ReactorKit
 
-final class SearchViewController: UIViewController, StoryboardView {
-    
+final class SearchViewController: UIViewController, StoryboardViewBindable {
+    typealias Reactor = SearchViewReactor
     typealias ImagesDataSource = RxCollectionViewSectionedReloadDataSource<ImagesSection>
     
     var disposeBag = DisposeBag()
@@ -45,8 +45,11 @@ final class SearchViewController: UIViewController, StoryboardView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    func bind(reactor: SearchViewReactor) {
+}
+
+// MARK: - Bind Reactor
+extension SearchViewController {
+    func bindAction(_ reactor: Reactor) {
         searchController.searchBar.rx.searchButtonClicked
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty)
             .filterEmpty()
@@ -79,7 +82,9 @@ final class SearchViewController: UIViewController, StoryboardView {
             .map { Reactor.Action.itemSeleted(imageURLString: $1[0].items[$0.item].imageURL) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+    }
+    
+    func bindState(_ reactor: Reactor) {
         reactor.state.map { $0.imageSections }
             .bind(to: imagesCollectionView.rx.items(dataSource: imagesDataSource))
             .disposed(by: disposeBag)

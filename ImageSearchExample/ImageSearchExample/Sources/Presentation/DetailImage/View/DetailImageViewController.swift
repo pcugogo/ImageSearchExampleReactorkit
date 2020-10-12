@@ -19,7 +19,8 @@ import Kingfisher
 import RxSwift
 import ReactorKit
 
-final class DetailImageViewController: UIViewController, StoryboardView {
+final class DetailImageViewController: UIViewController, StoryboardViewBindable {
+    typealias Reactor = DetailImageViewReactor
     
     var disposeBag: DisposeBag = .init()
     
@@ -32,14 +33,17 @@ final class DetailImageViewController: UIViewController, StoryboardView {
     
 }
 
+// MARK: - Bind Reactor
 extension DetailImageViewController {
-    func bind(reactor: DetailImageViewReactor) {
+    func bindAction(_ reactor: Reactor) {
         favoriteButton.rx.tap
-            .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
-            .map { Reactor.Action.updateFavorites }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
+        .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
+        .map { Reactor.Action.updateFavorites }
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
+    }
+    
+    func bindState(_ reactor: Reactor) {
         reactor.state.map { $0.imageURLString }
             .subscribe(onNext: { [weak self] in
                 guard let self = self, let url = URL(string: $0) else { return }

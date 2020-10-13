@@ -23,7 +23,7 @@ final class SearchViewReactorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let coordinator = SearchCoordinator(navigationController: UINavigationController())
-        let dependency = SearchDependency(searchUseCase: SearchUseCase(apiService: apiService))
+        let dependency = SearchCoordinator.Dependency(searchUseCase: SearchUseCase(apiService: apiService))
         reactor = SearchViewReactor(coordinator: coordinator,
                                         dependency: dependency)
     }

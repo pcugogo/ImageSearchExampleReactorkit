@@ -35,15 +35,15 @@ final class DetailImageViewController: UIViewController, StoryboardViewBindable 
 
 // MARK: - Bind Reactor
 extension DetailImageViewController {
-    func bindAction(_ reactor: Reactor) {
+    func bindAction(_ reactor: DetailImageViewReactor) {
         favoriteButton.rx.tap
-        .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
-        .map { Reactor.Action.updateFavorites }
-        .bind(to: reactor.action)
-        .disposed(by: disposeBag)
+            .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
+            .map { Reactor.Action.updateFavorites }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
-    func bindState(_ reactor: Reactor) {
+    func bindState(_ reactor: DetailImageViewReactor) {
         reactor.state.map { $0.imageURLString }
             .subscribe(onNext: { [weak self] in
                 guard let self = self, let url = URL(string: $0) else { return }

@@ -34,45 +34,45 @@ final class SearchViewReactor: Reactor {
     
     let initialState: State = State(imageSections: [])
     
-    private let searchDependency: SearchDependency
+    private let dependency: SearchCoordinator.Dependency
     private let coordinator: CoordinatorType
     
-    init(coordinator: CoordinatorType, dependency: Dependency) {
+    init(coordinator: CoordinatorType, dependency: SearchCoordinator.Dependency) {
         self.coordinator = coordinator
-        self.searchDependency = dependency as! SearchDependency
+        self.dependency = dependency
     }
 }
 
 extension SearchViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
-        let dependency = self.searchDependency
         switch action {
         case let .search(keyword):
-            let keyword = Observable.just(keyword)
-            let newSearch = keyword
-                .flatMapLatest { dependency.searchUseCase.searchImage(keyword: $0) }
-            return newSearch.map { result -> SearchViewReactor.Mutation in
-                switch result {
-                case .success(let response):
-                    return .setSearch(imagesSection: [ImagesSection(model: Void(), items: response.images)])
-                case .failure(let error):
-                    return .setErrorMessage(error.reason)
+            let result: Observable<Mutation> = dependency.searchUseCase
+                .searchImage(keyword: keyword)
+                .map {
+                    switch $0 {
+                    case .success(let response):
+                        return .setSearch(imagesSection: [ImagesSection(model: Void(), items: response.images)])
+                    case .failure(let error):
+                        return .setErrorMessage(error.reason)
+                    }
                 }
-            }
+            return result
         case .loadNextPage:
             guard !dependency.searchUseCase.isLastPage else {
                 return Observable.empty()
             }
-            let newSearch = Observable<Void>.just(Void())
-                .flatMapLatest { _ in dependency.searchUseCase.loadMoreImage() }
-            return newSearch.map { result -> SearchViewReactor.Mutation in
-                switch result {
-                case .success(let response):
-                    return .appendImagesCellItems(response.images)
-                case .failure(let error):
-                    return .setErrorMessage(error.reason)
+            let result: Observable<Mutation> = dependency.searchUseCase
+                .loadMoreImage()
+                .map {
+                    switch $0 {
+                    case .success(let response):
+                        return .appendImagesCellItems(response.images)
+                    case .failure(let error):
+                        return .setErrorMessage(error.reason)
+                    }
                 }
-            }
+            return result
         case let .itemSeleted(imageURLString):
             coordinator.navigate(to: .detailImage(imageURLString: imageURLString))
             return .empty()

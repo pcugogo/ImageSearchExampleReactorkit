@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct DetailImageDependency: Dependency {
-    let imageURLString: String
-    let favoritesStorage: ImageFavoritesStorageType
-}
-
 final class DetailImageCoordinator: Coordinator {
     
-    func start(with dependency: DetailImageDependency) {
+    struct Dependency {
+        let imageURLString: String
+        let favoritesStorage: ImageFavoritesStorageType
+    }
+    
+    func start(with dependency: Dependency) {
         let reactor = DetailImageViewReactor(coordinator: self, dependency: dependency)
         let storyboard = StoryboardName.main.instantiateStoryboard()
         let detailImageViewController = storyboard.instantiateViewController(withIdentifier:
@@ -24,5 +24,5 @@ final class DetailImageCoordinator: Coordinator {
         navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     
-    func navigate(to route: CoordinatorRoute) {}
+    func navigate(to route: Route) {}
 }

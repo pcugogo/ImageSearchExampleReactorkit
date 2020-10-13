@@ -21,12 +21,12 @@ final class DetailImageViewReactor: Reactor {
     }
     
     let initialState: State
-    private let detailImageDependency: DetailImageDependency
+    private let dependency: DetailImageCoordinator.Dependency
     
-    init(coordinator: CoordinatorType, dependency: Dependency) {
-        self.detailImageDependency = dependency as! DetailImageDependency
-        let imageURLString = detailImageDependency.imageURLString
-        let isAddFavorites = detailImageDependency.favoritesStorage.isContains(imageURLString)
+    init(coordinator: CoordinatorType, dependency: DetailImageCoordinator.Dependency) {
+        self.dependency = dependency
+        let imageURLString = dependency.imageURLString
+        let isAddFavorites = dependency.favoritesStorage.isContains(imageURLString)
         self.initialState = State(imageURLString: imageURLString, isAddFavorites: isAddFavorites)
     }
 }
@@ -35,8 +35,8 @@ extension DetailImageViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .updateFavorites:
-            let imageURLString = detailImageDependency.imageURLString
-            let isAddFavorites = detailImageDependency.favoritesStorage.update(imageURLString)
+            let imageURLString = dependency.imageURLString
+            let isAddFavorites = dependency.favoritesStorage.update(imageURLString)
             return .just(Mutation.setUpdateFavorites(isAddFavorites))
         }
     }

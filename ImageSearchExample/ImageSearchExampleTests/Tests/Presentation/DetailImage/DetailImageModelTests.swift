@@ -20,7 +20,7 @@ final class DetailImageViewReactorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let coordinator = DetailImageCoordinator(navigationController: UINavigationController())
-        let dependency = DetailImageDependency(imageURLString: searchImageDummy.imageURLString,
+        let dependency = DetailImageCoordinator.Dependency(imageURLString: searchImageDummy.imageURLString,
                                                favoritesStorage: ImageFavoritesStorageFake())
         reactor = DetailImageViewReactor(coordinator: coordinator, dependency: dependency)
     }

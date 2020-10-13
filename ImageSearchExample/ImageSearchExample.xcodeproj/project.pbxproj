@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1BF13FA002406266AC6DE0ED /* Pods_ImageSearchExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E5A87EFE17606D122797D4 /* Pods_ImageSearchExampleTests.framework */; };
 		551D5490611B4E454FE29853 /* Pods_ImageSearchExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59E996480C63CD6BF1A05BE /* Pods_ImageSearchExample.framework */; };
+		FC117D0D2535C7B300062EB2 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC117D0C2535C7B300062EB2 /* Route.swift */; };
 		FC16E770252C8A17006ECC32 /* ImageFavoritesStorageFakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC16E76F252C8A17006ECC32 /* ImageFavoritesStorageFakeTests.swift */; };
 		FC1B40572534801700E58A32 /* StoryboardViewBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1B40562534801700E58A32 /* StoryboardViewBindable.swift */; };
 		FC697EFC24A0FBC10050C154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC697EFB24A0FBC10050C154 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		C59E996480C63CD6BF1A05BE /* Pods_ImageSearchExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageSearchExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE873967A993FFA78B054724 /* Pods-ImageSearchExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearchExample.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearchExample/Pods-ImageSearchExample.debug.xcconfig"; sourceTree = "<group>"; };
 		E808DB1CE0716F51AC239126 /* Pods-ImageSearchExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearchExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ImageSearchExampleTests/Pods-ImageSearchExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		FC117D0C2535C7B300062EB2 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		FC16E76F252C8A17006ECC32 /* ImageFavoritesStorageFakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFavoritesStorageFakeTests.swift; sourceTree = "<group>"; };
 		FC1B40562534801700E58A32 /* StoryboardViewBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardViewBindable.swift; sourceTree = "<group>"; };
 		FC697EF824A0FBC10050C154 /* ImageSearchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,14 @@
 				41E5A87EFE17606D122797D4 /* Pods_ImageSearchExampleTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC117D0E2535C96B00062EB2 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				FC117D0C2535C7B300062EB2 /* Route.swift */,
+			);
+			path = Route;
 			sourceTree = "<group>";
 		};
 		FC16E76E252C8A01006ECC32 /* Data */ = {
@@ -241,6 +251,8 @@
 				FC697F3124A0FCEE0050C154 /* App */,
 				FC697F3324A0FD190050C154 /* Search */,
 				FC697F3424A0FD1C0050C154 /* DetailImage */,
+				FC117D0E2535C96B00062EB2 /* Route */,
+				FC805F3224E6B9B000AFC1E2 /* Coordinator */,
 				FC697F4424A0FDF40050C154 /* Utils */,
 			);
 			path = Presentation;
@@ -279,7 +291,6 @@
 		FC697F4424A0FDF40050C154 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FC805F3224E6B9B000AFC1E2 /* Coordinator */,
 				FC805F3124E6B9AC00AFC1E2 /* Extensions */,
 				FC1B405525347FFE00E58A32 /* Protocol */,
 			);
@@ -679,6 +690,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC697F5224A0FE830050C154 /* SearchResponse.swift in Sources */,
+				FC117D0D2535C7B300062EB2 /* Route.swift in Sources */,
 				FC697F4C24A0FE420050C154 /* ImageFavoritesStorage.swift in Sources */,
 				FC697F4824A0FE220050C154 /* UIViewController+showAlert.swift in Sources */,
 				FCC0C40B2524D233000C72EE /* DetailImageCoordinator.swift in Sources */,

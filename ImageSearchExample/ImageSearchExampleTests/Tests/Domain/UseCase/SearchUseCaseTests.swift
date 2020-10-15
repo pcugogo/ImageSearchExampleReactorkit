@@ -31,26 +31,16 @@ final class SearchUseCaseTests: XCTestCase {
 
     func testSearchImage() {
         searchUseCase.searchImage(keyword: "test")
-            .subscribe(onNext: { [weak self] (result) in
-                switch result {
-                case .success:
-                    XCTAssertTrue(self?.apiServiceSpy.page == 1)
-                case .failure(let error):
-                    XCTFail(error.reason)
-                }
+            .subscribe(onNext: { [weak self] _ in
+                XCTAssertTrue(self?.apiServiceSpy.page == 1)
             })
             .disposed(by: disposeBag)
     }
     
     func testLoadMore() {
         searchUseCase.loadMoreImage()
-            .subscribe(onNext: { [weak self] (result) in
-                switch result {
-                case .success:
-                    XCTAssertTrue(self?.apiServiceSpy.page == 2)
-                case .failure(let error):
-                    XCTFail(error.reason)
-                }
+            .subscribe(onNext: { [weak self] _ in
+                XCTAssertTrue(self?.apiServiceSpy.page == 2)
             })
             .disposed(by: disposeBag)
     }

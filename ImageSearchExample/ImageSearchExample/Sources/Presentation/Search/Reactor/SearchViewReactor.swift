@@ -6,7 +6,6 @@
 //  Copyright © 2020 ChanWookPark. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 import RxOptional
@@ -25,7 +24,7 @@ final class SearchViewReactor: Reactor {
     enum Mutation {
         case setSearch(imagesSection: [ImagesSection])
         case appendImagesCellItems([ImageData])
-        case setErrorMessage(String)
+        case setErrorMessage(NetworkError)
     }
     struct State {
         var imageSections: [ImagesSection]
@@ -49,14 +48,9 @@ extension SearchViewReactor {
         case let .search(keyword):
             let result: Observable<Mutation> = dependency.searchUseCase
                 .searchImage(keyword: keyword)
-                .map {
-                    switch $0 {
-                    case .success(let response):
-                        return .setSearch(imagesSection: [ImagesSection(model: Void(), items: response.images)])
-                    case .failure(let error):
-                        return .setErrorMessage(error.reason)
-                    }
-                }
+                .asObservable()
+                .map { .setSearch(imagesSection: [ImagesSection(model: Void(), items: $0.images)]) }
+                .catchError { .just(Mutation.setErrorMessage($0 as? NetworkError ?? NetworkError.unknown)) }
             return result
         case .loadNextPage:
             guard !dependency.searchUseCase.isLastPage else {
@@ -64,14 +58,9 @@ extension SearchViewReactor {
             }
             let result: Observable<Mutation> = dependency.searchUseCase
                 .loadMoreImage()
-                .map {
-                    switch $0 {
-                    case .success(let response):
-                        return .appendImagesCellItems(response.images)
-                    case .failure(let error):
-                        return .setErrorMessage(error.reason)
-                    }
-                }
+                .asObservable()
+                .map { .appendImagesCellItems($0.images) }
+                .catchError { .just(Mutation.setErrorMessage($0 as? NetworkError ?? NetworkError.unknown)) }
             return result
         case let .itemSeleted(imageURLString):
             coordinator.navigate(to: .detailImage(imageURLString: imageURLString))
@@ -86,8 +75,8 @@ extension SearchViewReactor {
             newState.imageSections = imagesSection
         case .appendImagesCellItems(let items):
             newState.imageSections[0].items += items
-        case .setErrorMessage(let message):
-            newState.errorMessage = message
+        case .setErrorMessage(let error):
+            newState.errorMessage = error.reason
         }
         return newState
     }

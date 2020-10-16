@@ -48,7 +48,6 @@ extension SearchViewReactor {
         case let .search(keyword):
             let result: Observable<Mutation> = dependency.searchUseCase
                 .searchImage(keyword: keyword)
-                .asObservable()
                 .map { .setSearch(imagesSection: [ImagesSection(model: Void(), items: $0.images)]) }
                 .catchError { .just(Mutation.setErrorMessage($0 as? NetworkError ?? NetworkError.unknown)) }
             return result
@@ -58,7 +57,6 @@ extension SearchViewReactor {
             }
             let result: Observable<Mutation> = dependency.searchUseCase
                 .loadMoreImage()
-                .asObservable()
                 .map { .appendImagesCellItems($0.images) }
                 .catchError { .just(Mutation.setErrorMessage($0 as? NetworkError ?? NetworkError.unknown)) }
             return result

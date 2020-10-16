@@ -6,7 +6,6 @@
 //  Copyright © 2020 ChanWookPark. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import RxSwift
 import RxCocoa
@@ -27,7 +26,7 @@ final class SearchUseCase: SearchUseCaseType {
         return currentPage >= 50
     }
     
-    init(apiService: APIServiceType) {
+    init(apiService: APIServiceType = APIService()) {
         self.apiService = apiService
     }
     

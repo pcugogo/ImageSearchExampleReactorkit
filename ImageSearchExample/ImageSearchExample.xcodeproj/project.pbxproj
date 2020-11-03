@@ -251,8 +251,6 @@
 				FC697F3124A0FCEE0050C154 /* App */,
 				FC697F3324A0FD190050C154 /* Search */,
 				FC697F3424A0FD1C0050C154 /* DetailImage */,
-				FC117D0E2535C96B00062EB2 /* Route */,
-				FC805F3224E6B9B000AFC1E2 /* Coordinator */,
 				FC697F4424A0FDF40050C154 /* Utils */,
 			);
 			path = Presentation;
@@ -291,8 +289,10 @@
 		FC697F4424A0FDF40050C154 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FC805F3224E6B9B000AFC1E2 /* Coordinator */,
 				FC805F3124E6B9AC00AFC1E2 /* Extensions */,
 				FC1B405525347FFE00E58A32 /* Protocol */,
+				FC117D0E2535C96B00062EB2 /* Route */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

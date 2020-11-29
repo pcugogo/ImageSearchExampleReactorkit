@@ -74,7 +74,7 @@ extension SearchViewReactor {
         case .appendImagesCellItems(let items):
             newState.imageSections[0].items += items
         case .setErrorMessage(let error):
-            newState.errorMessage = error.reason
+            newState.errorMessage = error.message
         }
         return newState
     }

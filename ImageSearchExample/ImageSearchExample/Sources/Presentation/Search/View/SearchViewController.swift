@@ -50,6 +50,7 @@ final class SearchViewController: UIViewController, StoryboardViewBindable {
 // MARK: - Bind Reactor
 extension SearchViewController {
     func bindAction(_ reactor: Reactor) {
+        
         searchController.searchBar.rx.searchButtonClicked
             .withLatestFrom(searchController.searchBar.rx.text.orEmpty)
             .filterEmpty()
@@ -85,6 +86,7 @@ extension SearchViewController {
     }
     
     func bindState(_ reactor: Reactor) {
+        
         reactor.state.map { $0.imageSections }
             .bind(to: imagesCollectionView.rx.items(dataSource: imagesDataSource))
             .disposed(by: disposeBag)

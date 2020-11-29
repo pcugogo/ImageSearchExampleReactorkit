@@ -26,7 +26,7 @@ final class SearchCoordinator: Coordinator {
         case .detailImage(let imageURLString):
             let coordinator = DetailImageCoordinator(navigationController: navigationController!)
             let dependency = DetailImageCoordinator.Dependency(imageURLString: imageURLString,
-                                                   favoritesStorage: ImageFavoritesStorage())
+                                                               favoritesStorage: ImageFavoritesStorage())
             coordinator.start(with: dependency)
         }
     }

@@ -24,12 +24,13 @@ extension ObservableType {
                         default:
                             throw error
                         }
-                },
+                    },
                 Observable<Int>.interval(timeInterval, scheduler: scheduler),
                 resultSelector: { error, retryCount in
                     guard retryCount < maxRetry else { return Void() }
                     throw error
-            })
+                }
+            )
         }
     }
 }

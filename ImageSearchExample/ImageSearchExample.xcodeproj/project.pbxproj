@@ -45,6 +45,7 @@
 		FCD30DF725741CD9004734D8 /* APIServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD30DF625741CD9004734D8 /* APIServiceType.swift */; };
 		FCD30E0025741D59004734D8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD30DFF25741D59004734D8 /* NetworkError.swift */; };
 		FCDF2FF4251B7F3D003CA039 /* SearchAPIServiceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF2FF3251B7F3D003CA039 /* SearchAPIServiceSpy.swift */; };
+		FCE4EAEA2577B53B004E181B /* ObservableType+retryWhenNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE4EAE92577B53B004E181B /* ObservableType+retryWhenNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		FCD30DF625741CD9004734D8 /* APIServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceType.swift; sourceTree = "<group>"; };
 		FCD30DFF25741D59004734D8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		FCDF2FF3251B7F3D003CA039 /* SearchAPIServiceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIServiceSpy.swift; sourceTree = "<group>"; };
+		FCE4EAE92577B53B004E181B /* ObservableType+retryWhenNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+retryWhenNetwork.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				FC697F4724A0FE220050C154 /* UIViewController+showAlert.swift */,
+				FCE4EAE92577B53B004E181B /* ObservableType+retryWhenNetwork.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				FC9B6DC724D9DC9B00CC9B5E /* ImageFavoritesStorageType.swift in Sources */,
 				FC697F5424A0FE8E0050C154 /* ImageData.swift in Sources */,
 				FC697F5024A0FE670050C154 /* APIService.swift in Sources */,
+				FCE4EAEA2577B53B004E181B /* ObservableType+retryWhenNetwork.swift in Sources */,
 				FCC0C4052524D195000C72EE /* AppCoordinator.swift in Sources */,
 				FCD30E0025741D59004734D8 /* NetworkError.swift in Sources */,
 				FC697F4024A0FD6D0050C154 /* DetailImageViewReactor.swift in Sources */,

@@ -36,7 +36,6 @@ final class SearchUseCase: SearchUseCaseType {
         let api = API.getImages(query: keyword, page: currentPage, numberOfImagesToLoad: 80)
         return apiService.request(api: api)
             .asObservable()
-            .retryWhenNetwork()
     }
     
     func loadMoreImage() -> Observable<SearchResponse> {
@@ -46,6 +45,5 @@ final class SearchUseCase: SearchUseCaseType {
         let api = API.getImages(query: keyword, page: currentPage, numberOfImagesToLoad: 80)
         return apiService.request(api: api)
             .asObservable()
-            .retryWhenNetwork()
     }
 }

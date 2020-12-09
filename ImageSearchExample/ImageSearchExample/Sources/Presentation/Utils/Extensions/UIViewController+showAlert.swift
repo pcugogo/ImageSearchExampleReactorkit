@@ -1,5 +1,5 @@
 //
-//  showAlert.swift
+//  UIViewController+showAlert.swift
 //  ImageSearchExample
 //
 //  Created by ChanWookPark on 2020/05/22.

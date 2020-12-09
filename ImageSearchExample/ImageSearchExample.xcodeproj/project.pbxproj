@@ -34,6 +34,7 @@
 		FC805F2A24E6B91C00AFC1E2 /* SearchViewReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC805F2924E6B91C00AFC1E2 /* SearchViewReactorTests.swift */; };
 		FC805F3824E6BA2000AFC1E2 /* StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC805F3724E6BA2000AFC1E2 /* StoryboardName.swift */; };
 		FC805F4C24E6E83D00AFC1E2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC805F4B24E6E83D00AFC1E2 /* Coordinator.swift */; };
+		FC846E57258108570076BBA7 /* UIViewController+instantiateFromStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC846E56258108570076BBA7 /* UIViewController+instantiateFromStoryboard.swift */; };
 		FC86201424AE258900C3C04D /* SearchImageDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86201324AE258900C3C04D /* SearchImageDummy.swift */; };
 		FC86201624AE264900C3C04D /* APIServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC86201524AE264900C3C04D /* APIServiceFake.swift */; };
 		FC99387124B74649005AE119 /* ImageFavoritesStorageFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC99387024B74649005AE119 /* ImageFavoritesStorageFake.swift */; };
@@ -93,6 +94,7 @@
 		FC805F2924E6B91C00AFC1E2 /* SearchViewReactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewReactorTests.swift; sourceTree = "<group>"; };
 		FC805F3724E6BA2000AFC1E2 /* StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardName.swift; sourceTree = "<group>"; };
 		FC805F4B24E6E83D00AFC1E2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		FC846E56258108570076BBA7 /* UIViewController+instantiateFromStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+instantiateFromStoryboard.swift"; sourceTree = "<group>"; };
 		FC86201324AE258900C3C04D /* SearchImageDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchImageDummy.swift; sourceTree = "<group>"; };
 		FC86201524AE264900C3C04D /* APIServiceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceFake.swift; sourceTree = "<group>"; };
 		FC99387024B74649005AE119 /* ImageFavoritesStorageFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFavoritesStorageFake.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				FC805F3224E6B9B000AFC1E2 /* Coordinator */,
+				FC846E55258108370076BBA7 /* Enums */,
 				FC805F3124E6B9AC00AFC1E2 /* Extensions */,
 				FC1B405525347FFE00E58A32 /* Protocol */,
 				FC117D0E2535C96B00062EB2 /* Route */,
@@ -373,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				FC697F4724A0FE220050C154 /* UIViewController+showAlert.swift */,
+				FC846E56258108570076BBA7 /* UIViewController+instantiateFromStoryboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,7 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				FC805F4B24E6E83D00AFC1E2 /* Coordinator.swift */,
-				FC805F3724E6BA2000AFC1E2 /* StoryboardName.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -400,6 +403,14 @@
 				FC697F3F24A0FD6D0050C154 /* DetailImageViewReactor.swift */,
 			);
 			path = Reactor;
+			sourceTree = "<group>";
+		};
+		FC846E55258108370076BBA7 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				FC805F3724E6BA2000AFC1E2 /* StoryboardName.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		FC86201024AE254200C3C04D /* Mocks */ = {
@@ -723,6 +734,7 @@
 				FC117D0D2535C7B300062EB2 /* Route.swift in Sources */,
 				FC697F4C24A0FE420050C154 /* ImageFavoritesStorage.swift in Sources */,
 				FC697F4824A0FE220050C154 /* UIViewController+showAlert.swift in Sources */,
+				FC846E57258108570076BBA7 /* UIViewController+instantiateFromStoryboard.swift in Sources */,
 				FCC0C40B2524D233000C72EE /* DetailImageCoordinator.swift in Sources */,
 				FC9B6DC724D9DC9B00CC9B5E /* ImageFavoritesStorageType.swift in Sources */,
 				FC697F5424A0FE8E0050C154 /* ImageData.swift in Sources */,

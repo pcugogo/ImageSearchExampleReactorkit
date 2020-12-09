@@ -20,9 +20,9 @@ final class AppCoordinator {
         let navigationController = storyboard
             .instantiateViewController(withIdentifier: "SearchNavigationController") as! UINavigationController
         window.rootViewController = navigationController
-        window.makeKeyAndVisible()
         let searchCoordinator = SearchCoordinator(navigationController: navigationController)
         let dependency = SearchCoordinator.Dependency(searchUseCase: SearchUseCase())
         searchCoordinator.start(with: dependency)
+        window.makeKeyAndVisible()
     }
 }

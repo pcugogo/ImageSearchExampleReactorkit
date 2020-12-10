@@ -19,7 +19,7 @@ final class DetailImageCoordinator: Coordinator {
         let reactor = DetailImageViewReactor(coordinator: self, dependency: dependency)
         let detailImageViewController = DetailImageViewController.instantiateFromStoryboard()
         detailImageViewController.reactor = reactor
-        navigationController?.pushViewController(detailImageViewController, animated: true)
+        presenter.present(targetViewController: detailImageViewController)
     }
     
     func navigate(to route: Route) {}

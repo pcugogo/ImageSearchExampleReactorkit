@@ -11,6 +11,7 @@ import RxCocoa
 import RxOptional
 import RxDataSources
 import ReactorKit
+import SCoordinator
 
 typealias ImagesSection = SectionModel<Void, ImageData>
 
@@ -61,7 +62,7 @@ extension SearchViewReactor {
                 .catchError { .just(Mutation.setErrorMessage($0 as? NetworkError ?? NetworkError.unknown)) }
             return result
         case let .itemSeleted(imageURLString):
-            coordinator.navigate(to: .detailImage(imageURLString: imageURLString))
+            coordinator.navigate(to: SearchRoute.detailImage(imageURLString: imageURLString))
             return .empty()
         }
     }

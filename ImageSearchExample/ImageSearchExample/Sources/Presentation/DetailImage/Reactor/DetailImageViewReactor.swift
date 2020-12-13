@@ -7,8 +7,14 @@
 //
 
 import ReactorKit
+import SCoordinator
 
 final class DetailImageViewReactor: Reactor {
+    
+    struct Dependency {
+        let imageURLString: String
+        let favoritesStorage: ImageFavoritesStorageType
+    }
     enum Action {
         case updateFavorites
     }
@@ -21,9 +27,9 @@ final class DetailImageViewReactor: Reactor {
     }
     
     let initialState: State
-    private let dependency: DetailImageCoordinator.Dependency
+    private let dependency: Dependency
     
-    init(coordinator: CoordinatorType, dependency: DetailImageCoordinator.Dependency) {
+    init(coordinator: CoordinatorType, dependency: Dependency) {
         self.dependency = dependency
         let imageURLString = dependency.imageURLString
         let isAddFavorites = dependency.favoritesStorage.isContains(imageURLString)

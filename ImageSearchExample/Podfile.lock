@@ -1,11 +1,11 @@
 PODS:
-  - Alamofire (5.2.2)
+  - Alamofire (5.4.0)
   - Differentiator (4.0.1)
-  - Kingfisher (5.15.5):
-    - Kingfisher/Core (= 5.15.5)
-  - Kingfisher/Core (5.15.5)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
   - Nimble (9.0.0)
-  - ReactorKit (2.1.0):
+  - ReactorKit (2.1.1):
     - RxSwift (~> 5.0)
     - WeakMapTable (~> 1.1)
   - RxCocoa (5.1.1):
@@ -21,22 +21,18 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
-  - RxViewController (1.0.0):
-    - RxCocoa (~> 5.0)
-    - RxSwift (~> 5.0)
-  - SwiftLint (0.40.3)
-  - WeakMapTable (1.1.0)
+  - SwiftLint (0.41.0)
+  - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Kingfisher (~> 5.0)
   - Nimble
   - ReactorKit
-  - RxCocoa (~> 5)
+  - RxCocoa
   - RxDataSources
   - RxOptional
-  - RxSwift (~> 5)
-  - RxViewController
+  - RxSwift
   - SwiftLint
 
 SPEC REPOS:
@@ -51,25 +47,23 @@ SPEC REPOS:
     - RxOptional
     - RxRelay
     - RxSwift
-    - RxViewController
     - SwiftLint
     - WeakMapTable
 
 SPEC CHECKSUMS:
-  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
-  Kingfisher: e3ec347a5ab8817b7585ef46923a2d2b9a7d8fbe
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
-  ReactorKit: 12a93358c554bb3f167b16b14c40374fa9cd5acd
+  ReactorKit: 6d894a20c3d508344320901cd8e386fde92df4b6
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
-  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
-  WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
+  SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
+  WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: 8fafdc5556dd262b23f40b359dd856c7be65d2e2
+PODFILE CHECKSUM: d4013d941baa61ea039d915b38918b392f2e36b1
 
 COCOAPODS: 1.9.3

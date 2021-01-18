@@ -17,6 +17,9 @@ typealias ImagesSection = SectionModel<Void, ImageData>
 
 final class SearchViewReactor: Reactor {
     
+    struct Dependency {
+        let searchUseCase: SearchUseCaseType
+    }
     enum Action {
         case search(keyword: String)
         case loadNextPage
@@ -34,10 +37,10 @@ final class SearchViewReactor: Reactor {
     
     let initialState: State = State(imageSections: [])
     
-    private let dependency: SearchCoordinator.Dependency
+    private let dependency: Dependency
     private let coordinator: CoordinatorType
     
-    init(coordinator: CoordinatorType, dependency: SearchCoordinator.Dependency) {
+    init(coordinator: CoordinatorType, dependency: Dependency) {
         self.coordinator = coordinator
         self.dependency = dependency
     }
@@ -48,7 +51,7 @@ extension SearchViewReactor {
         switch action {
         case let .search(keyword):
             let result: Observable<Mutation> = dependency.searchUseCase
-                .searchImage(keyword: keyword)
+                .search(keyword: keyword)
                 .map { .setSearch(imagesSection: [ImagesSection(model: Void(), items: $0.images)]) }
                 .catchError { .just(Mutation.setErrorMessage($0 as? NetworkError ?? NetworkError.unknown)) }
             return result
@@ -57,7 +60,7 @@ extension SearchViewReactor {
                 return Observable.empty()
             }
             let result: Observable<Mutation> = dependency.searchUseCase
-                .loadMoreImage()
+                .loadMoreImages()
                 .map { .appendImagesCellItems($0.images) }
                 .catchError { .just(Mutation.setErrorMessage($0 as? NetworkError ?? NetworkError.unknown)) }
             return result

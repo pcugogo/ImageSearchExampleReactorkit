@@ -21,7 +21,7 @@ final class SearchUseCaseTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.searchUseCase = SearchUseCase(apiService: apiServiceSpy)
+        self.searchUseCase = SearchUseCase(imageSearchRepository: SearchRepository())
     }
     
     override func tearDown() {
@@ -30,7 +30,7 @@ final class SearchUseCaseTests: XCTestCase {
     }
 
     func testSearchImage() {
-        searchUseCase.searchImage(keyword: "test")
+        searchUseCase.search(keyword: "test")
             .subscribe(onNext: { [weak self] _ in
                 XCTAssertTrue(self?.apiServiceSpy.page == 1)
             })
@@ -38,7 +38,7 @@ final class SearchUseCaseTests: XCTestCase {
     }
     
     func testLoadMore() {
-        searchUseCase.loadMoreImage()
+        searchUseCase.loadMoreImages()
             .subscribe(onNext: { [weak self] _ in
                 XCTAssertTrue(self?.apiServiceSpy.page == 2)
             })

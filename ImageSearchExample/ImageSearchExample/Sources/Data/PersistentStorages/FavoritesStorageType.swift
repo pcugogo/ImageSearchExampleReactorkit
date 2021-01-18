@@ -1,5 +1,5 @@
 //
-//  ImageFavoritesStorageType.swift
+//  FavoritesStorageType.swift
 //  ImageSearchExample
 //
 //  Created by ChanWook Park on 05/08/2020.
@@ -9,12 +9,7 @@
 import Foundation
 
 protocol FavoritesStorageType {
-    typealias IsContains = Bool
-    
     var favorites: [String] { get }
     func add(_ favorite: String)
     func remove(_ favorite: String)
-    func isContains(_ favorite: String) -> Bool
-    @discardableResult
-    func update(_ favorite: String) -> IsContains
 }

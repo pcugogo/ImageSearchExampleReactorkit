@@ -13,7 +13,7 @@ final class DetailImageViewReactor: Reactor {
     
     struct Dependency {
         let imageURLString: String
-        let favoritesStorage: ImageFavoritesStorageType
+        let fetchFavoritesUseCase: FetchFavoritesUseCaseType
     }
     enum Action {
         case updateFavorites
@@ -32,7 +32,7 @@ final class DetailImageViewReactor: Reactor {
     init(coordinator: CoordinatorType, dependency: Dependency) {
         self.dependency = dependency
         let imageURLString = dependency.imageURLString
-        let isAddFavorites = dependency.favoritesStorage.isContains(imageURLString)
+        let isAddFavorites = dependency.fetchFavoritesUseCase.isContains(imageURLString)
         self.initialState = State(imageURLString: imageURLString, isAddFavorites: isAddFavorites)
     }
 }
@@ -42,7 +42,7 @@ extension DetailImageViewReactor {
         switch action {
         case .updateFavorites:
             let imageURLString = dependency.imageURLString
-            let isAddFavorites = dependency.favoritesStorage.update(imageURLString)
+            let isAddFavorites = dependency.fetchFavoritesUseCase.update(imageURLString)
             return .just(Mutation.setUpdateFavorites(isAddFavorites))
         }
     }

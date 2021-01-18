@@ -11,11 +11,7 @@ import SCoordinator
 
 final class SearchCoordinator: Coordinator<UINavigationController> {
     
-    struct Dependency {
-        let searchUseCase: SearchUseCaseType
-    }
-    
-    func start(with dependency: Dependency) {
+    func start(with dependency: SearchViewReactor.Dependency) {
         let searchViewController = root.viewControllers.first as! SearchViewController
         let reactor = SearchViewReactor(coordinator: self, dependency: dependency)
         searchViewController.reactor = reactor
@@ -35,9 +31,9 @@ extension SearchCoordinator {
     func navigateToDetailImage(urlString: String) {
         let dependency = DetailImageViewReactor.Dependency(
             imageURLString: urlString,
-            favoritesStorage: ImageFavoritesStorage()
+            fetchFavoritesUseCase: FetchFavoritesUseCase()
         )
-        var detailImageViewController = DetailImageViewController.instantiateFromStoryboard()
+        let detailImageViewController = DetailImageViewController.instantiateFromStoryboard()
         let reactor = DetailImageViewReactor(coordinator: self, dependency: dependency)
         detailImageViewController.reactor = reactor
         root.pushViewController(detailImageViewController, animated: true)

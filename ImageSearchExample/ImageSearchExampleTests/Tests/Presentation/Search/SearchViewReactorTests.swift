@@ -24,7 +24,7 @@ final class SearchViewReactorTests: XCTestCase {
         super.setUp()
         let coordinator = SearchCoordinator(root: UINavigationController())
         searchRepository = SearchRepository(apiService: apiService)
-        let dependency = SearchCoordinator.Dependency(searchUseCase: SearchUseCase(imageSearchRepository: searchRepository))
+        let dependency = SearchCoordinator.Dependency(searchUseCase: SearchUseCase(searchRepository: searchRepository))
         reactor = SearchViewReactor(
             coordinator: coordinator,
             dependency: dependency

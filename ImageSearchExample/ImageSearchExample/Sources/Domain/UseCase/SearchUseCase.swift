@@ -17,7 +17,7 @@ protocol SearchUseCaseType {
 
 final class SearchUseCase: SearchUseCaseType {
     
-    private let imageSearchRepository: SearchRepositoryType
+    private let searchRepository: SearchRepositoryType
     private var currentPage = 1 // 1 ~ 50
     private var keyword: String = ""
     
@@ -25,14 +25,14 @@ final class SearchUseCase: SearchUseCaseType {
         return currentPage >= 50
     }
     
-    init(imageSearchRepository: SearchRepositoryType = SearchRepository()) {
-        self.imageSearchRepository = imageSearchRepository
+    init(searchRepository: SearchRepositoryType = SearchRepository()) {
+        self.searchRepository = searchRepository
     }
     
     func search(keyword: String) -> Observable<SearchResponse> {
         self.keyword = keyword
         currentPage = 1
-        return imageSearchRepository.search(
+        return searchRepository.search(
             keyword: keyword,
             page: currentPage,
             numberOfImagesToLoad: 80
@@ -43,7 +43,7 @@ final class SearchUseCase: SearchUseCaseType {
         if !isLastPage {
             currentPage += 1
         }
-        return imageSearchRepository.search(
+        return searchRepository.search(
             keyword: keyword,
             page: currentPage,
             numberOfImagesToLoad: 80

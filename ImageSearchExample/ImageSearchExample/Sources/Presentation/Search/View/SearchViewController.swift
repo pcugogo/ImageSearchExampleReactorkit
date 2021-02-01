@@ -67,16 +67,15 @@ extension SearchViewController {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        let itemsCount = reactor.state.map { $0.imageSections }
-            .filter { !$0.isEmpty }
-            .map { $0[0].items.count }
-        
-        imagesCollectionView.rx.willDisplayCell.withLatestFrom(itemsCount, resultSelector: { ($0.at, $1) })
-            .map({ (indexPath, itemsCount) -> Bool in
-                return itemsCount != 1 && itemsCount - 1 == indexPath.item
-            })
-            .filter { $0 }
-            .throttle(.milliseconds(700), latest: false, scheduler: MainScheduler.instance)
+        imagesCollectionView.rx.contentOffset
+            .filter { [weak self] offset -> Bool in
+                guard let self = self else { return false }
+                
+                let scrollPosition: CGFloat = offset.y
+                let contentHeight: CGFloat = self.imagesCollectionView.contentSize.height
+                
+                return scrollPosition > contentHeight - self.imagesCollectionView.bounds.height
+            }
             .map { _ in Reactor.Action.loadNextPage }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)

@@ -7,9 +7,12 @@
 //
 
 import XCTest
+import Nimble
+import RxTest
 import RxSwift
 import RxCocoa
-import Nimble
+import SCoordinator
+
 
 @testable import ImageSearchExample
 
@@ -19,6 +22,8 @@ final class SearchViewReactorTests: XCTestCase {
     let searchImageDummy = SearchImageDummy()
     let apiService = SearchAPIServiceSpy()
     var searchRepository: SearchRepositoryType!
+    let scheduler = TestScheduler(initialClock: 0)
+    var disposeBag = DisposeBag()
     
     override func setUp() {
         super.setUp()
@@ -31,33 +36,35 @@ final class SearchViewReactorTests: XCTestCase {
         )
     }
     
-    override func tearDown() {
-        super.tearDown()
-        print("tearDown")
-    }
-    
-    func testSearchAction() {
-        reactor.action.onNext(.search(keyword: "Test"))
+    func testFetchSearchData() {
+        // Given
+        let imagesSectionsIsEmpty = scheduler.createObserver(Bool.self)
         
-        XCTAssertEqual(reactor.currentState.imageSections[0].items.count, searchImageDummy.totalCount)
-        XCTAssertEqual(reactor.currentState.imageSections[0].items[0].displaySitename, "DummyTest0")
-    }
-    
-    func testMoreFetch() {
-        reactor.action.onNext(.search(keyword: "Test"))
-        reactor.action.onNext(.loadNextPage)
+        reactor.state.map { $0.imageSections }
+            .map { $0.isEmpty }
+            .bind(to: imagesSectionsIsEmpty)
+            .disposed(by: disposeBag)
+         
+        // When
+        scheduler.createColdObservable([.next(1, ("test"))])
+            .bind { [weak self] in
+                self?.reactor.action.onNext(.search(keyword: $0))
+            }
+            .disposed(by: disposeBag)
         
-        guard let page = self.apiService.page else {
-            XCTFail("SearchUseCase_currentPage counting error")
-            return
-        }
+        scheduler.createColdObservable([.next(2, Void())])
+            .bind { [weak self] in
+                self?.reactor.action.onNext(.loadNextPage)
+            }
+            .disposed(by: disposeBag)
+        scheduler.start()
         
-        XCTAssertEqual(2, page)
-        
-        XCTAssertEqual(
-            reactor.currentState.imageSections[0].items.count,
-            searchImageDummy.totalCount * 2
+        // Then
+        let recordedEvents = Recorded.events(
+            .next(0, true),
+            .next(1, false),
+            .next(2, false)
         )
-        XCTAssertEqual(reactor.currentState.imageSections[0].items[0].displaySitename, "DummyTest0")
+        XCTAssertEqual(imagesSectionsIsEmpty.events, recordedEvents)
     }
 }
